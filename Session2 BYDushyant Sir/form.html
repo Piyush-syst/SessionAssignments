@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <title>NewOne</title>
+</head>
+
+<body>
+    <h3 style="text-align: center;">Enter Item Details</h3>
+    <div style="text-align: center;">
+    <form id="items" >
+        <label>Name of Item</label>
+        <input type="text" id="name" />
+        <br /><br>
+
+        <label>Category Name</label>
+        <input type="text" id="category">
+        <br /><br><input type="submit" value="submit" />
+        <button id="put">Get Last Element</button>
+        <br>
+        <div id="output1"></div>
+    </form>
+    <script>
+        let list = [];
+        let putItem = (event) => {
+          event.preventDefault();
+            let date = new Date();
+            let Curdate = date.getMinutes();
+            let name = document.getElementById("name").value;
+            let category = document.getElementById("category").value;
+            let temp ={};
+            temp["Curdate"]=Curdate;
+            temp["name"]=name;
+            temp["category"]=category;
+            list.push(temp);
+           document.getElementById("name").value="";
+           document.getElementById("category").value="";
+           
+        }
+        document.getElementById("items").addEventListener("submit", putItem);
+        document.getElementById("put").addEventListener("click", (event) => {
+            event.preventDefault();
+         
+            let day = new Date().getHours();
+          
+            for (const value of list) {
+              
+                for (const Curdate in value) {
+                     
+                    if (value.Curdate>day) {
+                      
+                        document.getElementById("output1").innerHTML = value.name;
+                        console.log(value.name);
+
+                    }
+                    else
+                    {
+                        document.getElementById("output1").innerHTML ="Condition is false"; 
+                    }
+                }
+            }
+        });
+
+
+
+
+
+
+    </script>
+    </div>
+</body>
+
+</html>
